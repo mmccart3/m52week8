@@ -24,6 +24,15 @@ async function addBook(req, res) {
 }
 
 async function listAllBooks (req,res){
+    try {
+        const listOfBooks = await Book.findAll();
+        res.status(200).json(listOfBooks);
+    } catch (error) {
+        res.status(501).json({
+            message: error.message,
+            error: error
+        })
+    }
 
 }
 
